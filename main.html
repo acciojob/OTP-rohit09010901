@@ -4,11 +4,53 @@
 
 <head>
 	<link rel="stylesheet" href="styles.css">
+	<style>
+		body{
+			text-align: center;
+			font-family: Arial, sans-serif;
+		}
+		.code-container{
+			display: flex;
+			gap: 10px;
+			justify-content: center;
+		}
+		.code{
+			width: 50px;
+			height: 50px;
+			border-radius: 50px;
+			text-align: center;
+            font-size: 24px;
+		}
+	</style>
 </head>
 
 <body>
 	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+	<h1 id="verification_heading">Verify Your Account</h1>
+	<p id="verification_subtext">Enter the 6-digit code sent to your phone.</p>
+	<div class="code-container">
+		<input class="code" type="text" maxlength="1">
+		<input class="code" type="text" maxlength="1">
+		<input class="code" type="text" maxlength="1">
+		<input class="code" type="text" maxlength="1">
+		<input class="code" type="text" maxlength="1">
+		<input class="code" type="text" maxlength="1">
+	</div>
+<script>
+	const codes = document.querySelectorAll(".code");
+	codes.forEach((code,index)=>{
+		codes[0].focus();
+		code.addEventListener("input", ()=>{
+			if(code.value !== "" && index<codes.length-1){
+				codes[index+1].focus();
+			}
+		});	
+
+	code.addEventListener("keydown", (event) => {
+			if(event.key=="Backspace" && index>0 && code.value === "")
+				codes[index-1].focus();
+});
+	});
 </script>
 
 </body>
